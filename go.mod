@@ -1,4 +1,4 @@
-module pdfdigremover
+module github.com/tribodiproblem/digpdf
 
 go 1.23.4
 
