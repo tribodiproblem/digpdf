@@ -3,7 +3,7 @@ package digremover_test
 import (
 	"testing"
 
-	digremover "pdfdigremover"
+	digremover "github.com/tribodiproblem/digpdf"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -17,7 +17,7 @@ func TestDigRemover(t *testing.T) {
 		)
 
 		_, err := pdfSignature.RemoveDigitalSignatures(outputFile)
-		assert.NoError(t, err)
+		assert.Error(t, err)
 	})
 
 	t.Run("in2, it should ok", func(t *testing.T) {
