@@ -1,4 +1,4 @@
-package digremover
+package digpdf
 
 import (
 	"crypto"

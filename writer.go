@@ -1,4 +1,4 @@
-package digremover
+package digpdf
 
 import (
 	"github.com/tribodiproblem/fvckpdf/pkg/api"

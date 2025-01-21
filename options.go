@@ -1,4 +1,4 @@
-package digremover
+package digpdf
 
 // Option return PDFWatermark with Option.
 type Option func(signature *PDFSignature)
