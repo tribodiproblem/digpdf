@@ -170,6 +170,30 @@ func (p *PDFSignature) RemoveDigitalSignatures(outputFilePath string) (bool, err
 		}
 	}
 
+	// retrieve Root dictionary
+	pdfRootDict := pdfContext.RootDict
+
+	// find Acro Form object
+	pdfAcroFormObj, foundAcroFormObj := pdfRootDict.Find("AcroForm")
+	if !foundAcroFormObj {
+		return false, nil
+	}
+
+	// parse Acro Form dictionary
+	pdfAcroFormDict, errParseAcroForm := pdfContext.DereferenceDict(pdfAcroFormObj)
+	if errParseAcroForm != nil {
+		return false, errParseAcroForm
+	}
+
+	var fields pdfcpu.Array
+
+	// update Acro Form fields with empty array
+	pdfAcroFormDict.Update("Fields", fields)
+
+	// Remove SigFlags if present
+	if _, found := pdfAcroFormDict.Find("SigFlags"); found {
+		pdfAcroFormDict.Delete("SigFlags")
+	}
 	return WritePDF(pdfContext, outputFilePath, p.configuration, p.metadata)
 }
 
