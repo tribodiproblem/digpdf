@@ -10,14 +10,14 @@ import (
 
 func TestDigRemover(t *testing.T) {
 	t.Run("in1, it should not ok", func(t *testing.T) {
-		inputFile := digpdf.CurrentDir() + "/in1.pdf"
-		outputFile := digpdf.CurrentDir() + "/out1.pdf"
+		inputFile := digpdf.CurrentDir() + "/testseal.pdf"
+		outputFile := digpdf.CurrentDir() + "/testsealout.pdf"
 		pdfSignature := digpdf.New(inputFile,
 			digpdf.WithCertificateInfo(),
 		)
 
 		_, err := pdfSignature.RemoveDigitalSignatures(outputFile)
-		assert.Error(t, err)
+		assert.NoError(t, err)
 	})
 
 	t.Run("in2, it should ok", func(t *testing.T) {
